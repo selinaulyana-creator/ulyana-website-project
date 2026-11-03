@@ -1,0 +1,27 @@
+name: README Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-readme:
+    name: Check README file
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check that README.md exists
+        run: test -f README.md
+
+      - name: Check that README.md is not empty
+        run: test -s README.md
